@@ -1,0 +1,48 @@
+main{
+    background-color: #282c34;
+    color: wheat;
+}
+
+.Villas {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.villa {
+    height: auto;
+    width: 300px;
+    margin: 40px;
+    border: 2px solid wheat;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+form > input {
+    margin: 10px;
+    display: block;
+}
+.addButton {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 50px;
+}
+
+.form1 {
+    width: 250px;
+    margin-left: 820px;
+}
+#submitBtn {
+    margin-top:5px;
+    margin-left:85px;
+}
+.divider {
+    width: auto;
+    height: 2px;
+    background-color: wheat;
+    margin: 20px;
+
+}
