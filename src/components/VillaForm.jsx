@@ -1,24 +1,39 @@
 import React, {useState} from 'react';
 import axios from "axios";
+import Swal from "sweetalert2";
 
 
-function VillaForm({villa}) {
+function VillaForm({ villa, setUpdatedVilla}) {
     const [villaName, setVillaName] = useState('');
     const [ocupancy, setOcupancy] = useState(0);
     const [sqft, setSqft] = useState(0)
     const [shown, setShown] = useState(false);
     const [rate, setRate] = useState(0)
+    const [details, setDetails] = useState('')
+
 
     const updateVillas = async (e) => {
         e.preventDefault()
-        const id_ = villa[villa.length - 1].id + 1;
-        await axios.post("https://localhost:7015/api/VillaApi/post", {
-            id: id_,
-            name: villaName,
-            ocupancy: ocupancy,
-            sqft: sqft,
-            rate: rate
+        Swal.fire({
+            title: 'Add Villa',
+            text: 'Are u sure u want to add a Villa',
+            icon: 'question',
+            confirmButtonText: 'Add',
+            showCloseButton: true,
+        }).then(async (result) => {
+            if(result.isConfirmed){
+                const id_ = villa[villa.length - 1].id + 1;
+                const response = await axios.post("https://localhost:7015/api/VillaApi/post", {
+                    id: id_,
+                    name: villaName,
+                    ocupancy: ocupancy,
+                    sqft: sqft,
+                    rate: rate
+                })
+                setUpdatedVilla(response.data)
+            }
         })
+
     }
 
 
@@ -48,6 +63,11 @@ function VillaForm({villa}) {
                         <label htmlFor="Rate">Rate: </label>
                         <input type="number" className="form-control" id="Rate"
                                onChange={event => setRate(parseInt(event.target.value))}/>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleVillaDetails">Villa Details: </label>
+                        <input type="text" className="form-control" id="exampleVillaDetails"
+                               onChange={event => setDetails(event.target.value)}/>
                     </div>
                     <div>
                         <button id='submitBtn' type="submit" className="btn btn-primary"

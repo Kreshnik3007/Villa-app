@@ -4,6 +4,7 @@ import VillaForm from "./VillaForm";
 import Swal from "sweetalert2";
 import './Styles.css'
 function Villa() {
+    const [updatedVilla, setUpdatedVilla] = useState([])
     const [villa, setVilla] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -11,12 +12,12 @@ function Villa() {
     useEffect(() => {
         const GetVilla = async () => axios.get("https://localhost:7015/api/VillaApi/get")
         try {
-            GetVilla().then((response) => setVilla(response.data))
+            GetVilla().then((response) => setVilla(response.data) + updatedVilla)
             setIsLoading(false)
         } catch (e) {
             console.log(e)
         }
-    }, [])
+    }, [updatedVilla])
     const deleteVilla = async (id) => {
         Swal.fire({
             title: 'Villa',
@@ -36,9 +37,9 @@ function Villa() {
 
     return (
         <div style={{background: '#282c34', color: "wheat"}}>
-            <VillaForm villa={villa}/>
+            <VillaForm villa={villa} setUpdatedVilla={setUpdatedVilla}/>
             <div className="Villas">
-                {!isLoading && villa?.map((villas) => {
+                {!isLoading && villa.map((villas) => {
                     const clearedDate = new Date(villas.createdDate).toDateString();
                     return(
                     <div className="villa" key={villas.id}>
