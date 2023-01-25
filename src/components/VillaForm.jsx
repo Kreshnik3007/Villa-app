@@ -22,9 +22,7 @@ function VillaForm({ villa, setUpdatedVilla}) {
             showCloseButton: true,
         }).then(async (result) => {
             if(result.isConfirmed){
-                const id_ = villa[villa.length - 1].id + 1;
-                const response = await axios.post("https://localhost:7015/api/VillaApi/post", {
-                    id: id_,
+                const response = await axios.post("https://localhost:44366/api/VillaAPI", {
                     name: villaName,
                     ocupancy: ocupancy,
                     sqft: sqft,

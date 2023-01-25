@@ -1,4 +1,4 @@
-main{
+body{
     background-color: #282c34;
     color: wheat;
 }
@@ -12,7 +12,7 @@ main{
 .villa {
     height: auto;
     width: 300px;
-    margin: 40px;
+    margin: 30px;
     border: 2px solid wheat;
     padding: 20px;
     border-radius: 5px;
@@ -45,4 +45,13 @@ form > input {
     background-color: wheat;
     margin: 20px;
 
+}
+
+.ImageUrl{
+    width: 150px;
+    height: 100px;
+}
+
+#deleteBtn {
+    float:right;
 }
